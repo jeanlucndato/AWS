@@ -1,56 +1,108 @@
-// components/layout/Footer.jsx
-import Link from 'next/link';
-import { FaFacebook, FaTwitter, FaLinkedin, FaMapMarkerAlt, FaEnvelope, FaPhone } from 'react-icons/fa';
+import Link from "next/link";
+import { FaTwitter, FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 
-function Footer() {
-    const currentYear = new Date().getFullYear();
-
+export default function Footer() {
     return (
-        <footer className="bg-gray-900 text-white py-8 mt-auto">
-            <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-                {/* Section 1: À propos d'AWS */}
-                <div>
-                    <h3 className="text-xl font-bold mb-4 text-yellow-400">African Web Services</h3>
-                    <p className="text-gray-400 text-sm">
-                        Votre partenaire de confiance pour des services de shipping rapides et sécurisés de la Belgique vers la République Démocratique du Congo.
+        <footer className="bg-gray-800 text-white py-8 rounded-2xl p-2">
+            <div className="container mx-auto px-4 flex flex-col md:flex-row md:justify-between">
+                {/* Bloc "About" (Gauche) */}
+                <div className="w-full md:w-1/4 mb-4 md:mb-0">
+                    <h3 className="font-semibold mb-2 text-sm">À propos</h3>
+                    <p className="text-xs">
+                        Entreprise spécialisée dans la construction de bâtiments écologiques et la vente de matériel solaire de haute qualité.
                     </p>
-                    <div className="flex space-x-4 mt-4">
-                        <a href="#" className="text-gray-400 hover:text-white transition duration-300"><FaFacebook size={24} /></a>
-                        <a href="#" className="text-gray-400 hover:text-white transition duration-300"><FaTwitter size={24} /></a>
-                        <a href="#" className="text-gray-400 hover:text-white transition duration-300"><FaLinkedin size={24} /></a>
+                    <p className="mt-1 text-xs">Certifications: ISO 14001, SolarPlus</p>
+                    <p className="mt-2 text-xs">© {new Date().getFullYear()} GenTech</p>
+                    <p className="mt-2 text-xs">@ <a href="https://jeanlucndato.github.io/resume/">Jeanluck</a> </p>
+                </div>
+
+                {/* Bloc "Navigations" (Centre) */}
+                <div className="w-full md:w-1/4 flex flex-col md:flex-row md:justify-center mb-4 md:mb-0">
+                    <div className="w-full md:w-1/2">
+                        <h3 className="font-semibold mb-2 text-sm">Navigations</h3>
+                        <ul className="space-y-1">
+                            <li>
+                                <Link href="/" className="text-gray-300 hover:text-white text-xs">
+                                    Accueil
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/about" className="text-gray-300 hover:text-white text-xs">
+                                    À propos
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/services" className="text-gray-300 hover:text-white text-xs">
+                                    Services
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/realisations" className="text-gray-300 hover:text-white text-xs">
+                                    Réalisations
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/contact" className="text-gray-300 hover:text-white text-xs">
+                                    Contact
+                                </Link>
+                            </li>
+                        </ul>
+                    </div>
+                    <div className="w-full md:w-1/2">
+                        <ul className="space-y-1 mt-4 md:mt-0">
+                            <li>
+                                <Link href="/privacy" className="text-gray-300 hover:text-white text-xs">
+                                    Politique de confidentialité
+                                </Link>
+                            </li>
+                            <li>
+                                <Link href="/terms" className="text-gray-300 hover:text-white text-xs">
+                                    Conditions d'utilisation
+                                </Link>
+                            </li>
+                            {/* "Connect with us" placé ici */}
+                            <li>
+                                <div className="mb-4 md:mb-0">
+                                    <h3 className="font-semibold mb-2 text-sm">Connect with us</h3>
+                                    <div className="flex space-x-2">
+                                        <a href="#" className="hover:text-gray-300">
+                                            <FaFacebook className="text-xl" />
+                                        </a>
+                                        <a href="#" className="hover:text-gray-300">
+                                            <FaTwitter className="text-xl" />
+                                        </a>
+                                        <a href="#" className="hover:text-gray-300">
+                                            <FaInstagram className="text-xl" />
+                                        </a>
+                                        <a href="#" className="hover:text-gray-300">
+                                            <FaYoutube className="text-xl" />
+                                        </a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                 </div>
 
-                {/* Section 2: Liens Rapides */}
-                <div>
-                    <h3 className="text-xl font-bold mb-4 text-yellow-400">Liens Rapides</h3>
-                    <ul className="space-y-2 text-gray-400">
-                        <li><Link href="/services" className="hover:text-white transition duration-300">Nos Services</Link></li>
-                        <li><Link href="/tarifs" className="hover:text-white transition duration-300">Tarifs</Link></li>
-                        <li><Link href="/suivi" className="hover:text-white transition duration-300">Suivi Colis</Link></li>
-                        <li><Link href="/faq" className="hover:text-white transition duration-300">FAQ</Link></li>
-                        <li><Link href="/cgv" className="hover:text-white transition duration-300">Conditions Générales de Vente</Link></li>
-                    </ul>
+                {/* Bloc "Newsletter" (Droite) */}
+                <div className="w-full md:w-1/4">
+                    <h3 className="font-semibold mb-2 text-sm">Newsletter</h3>
+                    <p className="text-xs mb-2">
+                        Restez informé de nos dernières actualités et offres spéciales.
+                    </p>
+                    <form className="flex flex-col md:flex-row">
+                        <input
+                            type="email"
+                            placeholder="Votre adresse email"
+                            className="bg-gray-700 text-white p-1 rounded-l-md focus:outline-none flex-grow mb-1 md:mb-0 md:mr-1 text-xs"
+                        />
+                        <button className="bg-blue-500 hover:bg-emerald-500 text-white px-2 py-1 rounded-r-md text-xs">
+                            S'abonner
+                        </button>
+                    </form>
                 </div>
-
-                {/* Section 3: Contact */}
-                <div>
-                    <h3 className="text-xl font-bold mb-4 text-yellow-400">Nous Contacter</h3>
-                    <ul className="space-y-2 text-gray-400">
-                        <li className="flex items-center"><FaMapMarkerAlt className="mr-2" /> 123 Rue de la Belgique, Bruxelles</li>
-                        <li className="flex items-center"><FaEnvelope className="mr-2" /> info@africanwebservices.com</li>
-                        <li className="flex items-center"><FaPhone className="mr-2" /> +32 123 45 67 89</li>
-                        <li className="flex items-center"><FaMapMarkerAlt className="mr-2" /> Av. des Poids Lourds, Goma, RDC</li> {/* Ajout de l'adresse RDC */}
-                        <li className="flex items-center"><FaPhone className="mr-2" /> +243 890 123 456</li> {/* Ajout du numéro RDC */}
-                    </ul>
-                </div>
-            </div>
-
-            <div className="border-t border-gray-700 mt-8 pt-4 text-center text-gray-500 text-sm">
-                &copy; {currentYear} African Web Services. Tous droits réservés.
             </div>
         </footer>
     );
 }
 
-export default Footer;
