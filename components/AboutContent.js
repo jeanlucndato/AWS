@@ -1,278 +1,190 @@
-"use client";
-
+// pages/about.jsx
 import { motion } from 'framer-motion';
-import Image from 'next/image';
-import {
-  FaFacebook, FaTwitter, FaInstagram, FaLinkedin,
-  FaCode, FaPalette, FaHeadset, FaMobileAlt,
-  FaChartLine, FaShieldAlt
-} from 'react-icons/fa';
-import back from '../../public/assets/img/bg.jpg';
-import prop8 from '../../public/assets/img/prop8.jpg';
-import prop11 from '../../public/assets/img/prop11.jpeg';
-import team1 from '../../public/assets/img/team1.jpg';
-import team2 from '../../public/assets/img/team2.jpg';
-import team3 from '../../public/assets/img/team3.jpg';
-import team4 from '../../public/assets/img/team4.jpg';
+import { FaShippingFast, FaCheckCircle, FaGlobeAfrica, FaUsers, FaHeart } from 'react-icons/fa';
+import Image from 'next/image'; // For optimized image handling in Next.js
 
-// Animations
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: "easeOut" }
-  }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1
-    }
-  }
-};
-
-const scaleUp = {
-  hidden: { scale: 0.95, opacity: 0 },
-  visible: {
-    scale: 1,
-    opacity: 1,
-    transition: { duration: 0.5 }
-  }
-};
-
-export default function AboutContent() {
-  const services = [
-    { icon: <FaCode className="text-3xl" />, title: "Art Of Coding", description: "Nous réalisons des audits énergétiques pour évaluer le potentiel solaire de votre propriété et vous conseiller sur les meilleures solutions à adopter.Nos experts vous guident à travers les démarches administratives, les aides financières disponibles et les avantages économiques de l'énergie solaire." },
-    { icon: <FaCode className="text-3xl" />, title: "Art Of Coding", description: "Nous installons des systèmes solaires thermiques pour la production d'eau chaude sanitaire et le chauffage.Cette solution écologique et économique vous permet de réduire votre dépendance aux énergies fossiles et de diminuer vos factures énergétiques" },
-    { icon: <FaCode className="text-3xl" />, title: "Art Of Coding", description: "Nous installons des systèmes solaires thermiques pour la production d'eau chaude sanitaire et le chauffage.Cette solution écologique et économique vous permet de réduire votre dépendance aux énergies fossiles et de diminuer vos factures énergétique" },
-    { icon: <FaCode className="text-3xl" />, title: "Art Of Coding", description: "Nous installons des systèmes solaires thermiques pour la production d'eau chaude sanitaire et le chauffage.Cette solution écologique et économique vous permet de réduire votre dépendance aux énergies fossiles et de diminuer vos factures énergétique" },
-    { icon: <FaCode className="text-3xl" />, title: "Art Of Coding", description: "Nous installons des systèmes solaires thermiques pour la production d'eau chaude sanitaire et le chauffage.Cette solution écologique et économique vous permet de réduire votre dépendance aux énergies fossiles et de diminuer vos factures énergétique" },
-    { icon: <FaCode className="text-3xl" />, title: "Art Of Coding", description: "Nous installons des systèmes solaires thermiques pour la production d'eau chaude sanitaire et le chauffage.Cette solution écologique et économique vous permet de réduire votre dépendance aux énergies fossiles et de diminuer vos factures énergétique" },
-    // ... autres services
-  ];
-
-
-
+export default function AboutPage() {
   return (
-    <div className="bg-white">
-      {/* Hero Section avec animation */}
+    <div className="container mx-auto px-4 py-16">
+      {/* Hero Section */}
       <motion.div
-        className="relative h-[70vh] min-h-[500px] overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        className="text-center mb-16"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
       >
-        <div className="absolute inset-0 bg-black/50 z-10" />
-        <Image
-          src={back}
-          alt="Notre équipe au travail"
-          fill
-          className="object-cover"
-          priority
-        />
-        <motion.div
-          className="relative z-20 h-full flex flex-col justify-center text-white px-6 sm:px-12 lg:px-24"
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
-        >
-          <motion.h1
-            className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 max-w-3xl"
-            variants={fadeIn}
-          >
-            Innovateurs en solutions technologiques
-          </motion.h1>
-          <motion.p
-            className="text-xl sm:text-2xl max-w-2xl mb-8"
-            variants={fadeIn}
-          >
-            Nous transformons les idées en réalités digitales depuis 2010
-          </motion.p>
-          <motion.button
-            className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-8 rounded-lg w-fit transition-all transform hover:scale-105"
-            variants={fadeIn}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Découvrir notre histoire
-          </motion.button>
-        </motion.div>
+        <h1 className="text-6xl font-extrabold text-blue-800 leading-tight mb-4">
+          À Propos d'Afrika World Services
+        </h1>
+        <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+          Votre partenaire de confiance pour des livraisons fiables et efficaces entre la Belgique et Goma, RDC.
+        </p>
       </motion.div>
 
-      {/* Valeurs avec animations */}
-      <motion.section
-        className="py-16 bg-gradient-to-b from-white to-gray-50"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-      >
-        <div className="container mx-auto px-6">
+      {/* Our Story Section */}
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <h2 className="text-4xl font-bold text-gray-900 mb-6">
+            Notre Histoire et Notre Mission
+          </h2>
+          <p className="text-lg text-gray-700 leading-relaxed mb-4">
+            Fondée avec la vision de combler le fossé logistique entre l'Europe et l'Afrique, Afrika World Services est née de la nécessité d'offrir des solutions de livraison fiables et transparentes. Nous avons constaté le besoin croissant d'un service de qualité entre la Belgique et la République Démocratique du Congo, en particulier pour la ville dynamique de Goma.
+          </p>
+          <p className="text-lg text-gray-700 leading-relaxed">
+            Notre mission est de faciliter les échanges, de soutenir les entreprises et de reconnecter les familles en assurant que chaque colis arrive à destination en toute sécurité et dans les délais impartis.
+          </p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="relative w-full h-80 rounded-xl overflow-hidden shadow-2xl"
+        >
+          <Image
+            src="/images/about-story.jpg" // You'll need to add an image here
+            alt="Our Story - Logistics Operations"
+            layout="fill"
+            objectFit="cover"
+            className="rounded-xl"
+          />
+        </motion.div>
+      </section>
+
+      {/* Our Values Section */}
+      <section className="mb-20">
+        <motion.h2
+          className="text-4xl font-bold text-center text-gray-900 mb-12"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.4 }}
+        >
+          Nos Valeurs Fondamentales
+        </motion.h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Value Card 1 */}
           <motion.div
-            className="text-center mb-16"
-            variants={fadeIn}
+            className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            whileHover={{ scale: 1.05, boxShadow: "0 15px 25px rgba(0,0,0,0.15)" }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nos Valeurs Fondatrices</h2>
-            <motion.div
-              className="w-24 h-1 bg-red-600 mx-auto"
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            />
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {services.slice(0, 3).map((service, index) => (
-              <motion.div
-                key={index}
-                className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
-                variants={scaleUp}
-                whileHover={{ y: -5 }}
-              >
-                <div className="text-red-600 mb-4">{service.icon}</div>
-                <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Notre Histoire avec animation parallax */}
-      <motion.section
-        className="py-16 bg-gray-50 overflow-hidden"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            <motion.div
-              className="lg:w-1/2"
-              initial={{ x: -100, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                <Image
-                  src={prop8}
-                  alt="Notre bureau"
-                  className="rounded-xl shadow-xl w-full h-auto"
-                  width={600}
-                  height={400}
-                />
-              </motion.div>
-            </motion.div>
-
-            <motion.div
-              className="lg:w-1/2"
-              initial={{ x: 100, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">Notre Histoire</h2>
-              {/* ... contenu ... */}
-            </motion.div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Services avec animations en cascade */}
-      <motion.section
-        className="py-16 bg-white"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={staggerContainer}
-      >
-        <div className="container mx-auto px-6">
-          <motion.div
-            className="text-center mb-16"
-            variants={fadeIn}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Nos Domaines d'Expertise</h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Des solutions complètes pour tous vos besoins digitaux
+            <FaCheckCircle className="text-blue-600 text-5xl mb-4 mx-auto" />
+            <h3 className="text-2xl font-semibold mb-3 text-gray-800">Fiabilité</h3>
+            <p className="text-gray-600">
+              Nous nous engageons à livrer vos colis en toute sécurité et dans les délais convenus, à chaque fois.
             </p>
           </motion.div>
 
+          {/* Value Card 2 */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-            variants={staggerContainer}
+            className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            whileHover={{ scale: 1.05, boxShadow: "0 15px 25px rgba(0,0,0,0.15)" }}
           >
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                className="bg-gray-50 p-8 rounded-xl hover:bg-white hover:shadow-lg transition-all"
-                variants={scaleUp}
-                whileHover={{
-                  y: -5,
-                  scale: 1.03,
-                  transition: { duration: 0.2 }
-                }}
-              >
-                <motion.div
-                  className="text-red-600 mb-4"
-                  whileHover={{ rotate: 10 }}
-                >
-                  {service.icon}
-                </motion.div>
-                <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-                <p className="text-gray-600">{service.description}</p>
-              </motion.div>
-            ))}
+            <FaUsers className="text-green-600 text-5xl mb-4 mx-auto" />
+            <h3 className="text-2xl font-semibold mb-3 text-gray-800">Service Client</h3>
+            <p className="text-gray-600">
+              Votre satisfaction est notre priorité. Nous offrons un support personnalisé et réactif.
+            </p>
+          </motion.div>
+
+          {/* Value Card 3 */}
+          <motion.div
+            className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 text-center"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            whileHover={{ scale: 1.05, boxShadow: "0 15px 25px rgba(0,0,0,0.15)" }}
+          >
+            <FaHeart className="text-red-600 text-5xl mb-4 mx-auto" />
+            <h3 className="text-2xl font-semibold mb-3 text-gray-800">Intégrité</h3>
+            <p className="text-gray-600">
+              Nous opérons avec la plus grande honnêteté et transparence dans toutes nos transactions.
+            </p>
           </motion.div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* Équipe avec animations */}
-
-
-      {/* CTA avec animation */}
-      <motion.section
-        className="py-16 bg-red-600 text-white"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-      >
-        <div className="container mx-auto px-6 text-center">
-          <motion.h2
-            className="text-3xl md:text-4xl font-bold mb-6"
-            initial={{ y: 20 }}
-            whileInView={{ y: 0 }}
-            transition={{ type: "spring" }}
+      {/* Why Choose Us Section */}
+      <section className="text-center bg-blue-50 py-16 rounded-xl shadow-inner mb-20">
+        <motion.h2
+          className="text-4xl font-bold text-blue-800 mb-10"
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.8 }}
+        >
+          Pourquoi Choisir Afrika World Services ?
+        </motion.h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <motion.div
+            className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.9 }}
           >
-            Prêt à transformer votre vision en réalité ?
-          </motion.h2>
-          <motion.button
-            className="bg-white text-red-600 font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition-all"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            <FaGlobeAfrica className="text-blue-500 text-4xl mb-3" />
+            <h3 className="font-semibold text-lg text-gray-800 mb-2">Expertise Internationale</h3>
+            <p className="text-gray-600 text-sm">Maîtrise des corridors Belgique-RDC.</p>
+          </motion.div>
+          <motion.div
+            className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 1 }}
           >
-            Nous Contacter
-          </motion.button>
+            <FaShippingFast className="text-green-500 text-4xl mb-3" />
+            <h3 className="font-semibold text-lg text-gray-800 mb-2">Rapidité & Sécurité</h3>
+            <p className="text-gray-600 text-sm">Vos colis livrés rapidement et intacts.</p>
+          </motion.div>
+          <motion.div
+            className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 1.1 }}
+          >
+            <FaCheckCircle className="text-purple-500 text-4xl mb-3" />
+            <h3 className="font-semibold text-lg text-gray-800 mb-2">Transparence Totale</h3>
+            <p className="text-gray-600 text-sm">Suivi clair et communication ouverte.</p>
+          </motion.div>
+          <motion.div
+            className="flex flex-col items-center p-6 bg-white rounded-lg shadow-md"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 1.2 }}
+          >
+            <FaUsers className="text-orange-500 text-4xl mb-3" />
+            <h3 className="font-semibold text-lg text-gray-800 mb-2">Approche Personnelle</h3>
+            <p className="text-gray-600 text-sm">Des solutions adaptées à chaque client.</p>
+          </motion.div>
         </div>
-      </motion.section>
+      </section>
+
+      {/* Call to Action */}
+      <motion.div
+        className="text-center mt-16 bg-blue-700 text-white py-12 rounded-xl shadow-xl"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 1.3 }}
+      >
+        <h2 className="text-4xl font-bold mb-6">Prêt à Expédier avec le Meilleur ?</h2>
+        <p className="text-lg mb-8 max-w-2xl mx-auto">
+          Faites confiance à Afrika World Services pour tous vos besoins d'expédition de la Belgique à Goma.
+          Contactez-nous pour une expérience logistique sans souci.
+        </p>
+        <a
+          href="/contact"
+          className="inline-block bg-white text-blue-700 font-bold py-4 px-10 rounded-full text-xl shadow-lg hover:bg-gray-100 transition-all duration-300"
+        >
+          Contactez-nous
+        </a>
+      </motion.div>
     </div>
   );
 }
-
-
-
-
-
-
-
-
-
-
