@@ -85,23 +85,25 @@ const FAQItem = ({ question, answer, isOpen, toggleOpen }) => {
         <motion.div
             className="border-b border-gray-200 pb-4 mb-4 cursor-pointer"
             initial={false}
-            animate={{ backgroundColor: isOpen ? "rgba(239, 246, 255, 1)" : "rgba(255, 255, 255, 1)" }} // bg-blue-50 vs bg-white
+            // Changement: Couleur de fond plus douce et progressive
+            animate={{ backgroundColor: isOpen ? "rgba(239, 246, 255, 0.8)" : "rgba(255, 255, 255, 1)" }} // bg-blue-50 avec opacité pour un effet plus doux
             transition={{ duration: 0.3 }}
             onClick={toggleOpen}
         >
             <motion.div
-                className="flex justify-between items-center py-2"
+                className="flex justify-between items-center py-2 sm:py-3" // Padding vertical légèrement augmenté pour mobile
                 initial={false}
-                animate={{ color: isOpen ? "#1D4ED8" : "#374151" }} // text-blue-700 vs text-gray-700
+                // Changement: Texte de question plus sombre au repos, bleu plus clair à l'ouverture
+                animate={{ color: isOpen ? "#2563EB" : "#1F2937" }} // text-blue-600 vs text-gray-900 pour la question
             >
-                <h3 className="text-xl font-semibold">{question}</h3>
+                <h3 className="text-lg sm:text-xl font-heading font-semibold pr-4 leading-tight">{question}</h3> {/* Taille responsive, Poppins pour la question, padding à droite */}
                 <motion.span
                     initial={false}
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.3 }}
-                    className="text-gray-500"
+                    className="text-gray-500 flex-shrink-0" // Empêche l'icône de se réduire
                 >
-                    <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 20 20"> {/* Taille d'icône responsive */}
                         <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd"></path>
                     </svg>
                 </motion.span>
@@ -110,7 +112,7 @@ const FAQItem = ({ question, answer, isOpen, toggleOpen }) => {
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: isOpen ? 1 : 0, height: isOpen ? 'auto' : 0 }}
                 transition={{ opacity: { duration: 0.3 }, height: { duration: 0.4 } }}
-                className="overflow-hidden text-gray-700 pl-4 pr-8 text-lg leading-relaxed"
+                className="overflow-hidden text-gray-700 pl-4 pr-4 sm:pr-8 text-base sm:text-lg leading-relaxed" // Padding et taille de texte responsive pour la réponse
             >
                 {isOpen && <p className="pt-2 pb-4">{answer}</p>}
             </motion.div>
@@ -119,7 +121,6 @@ const FAQItem = ({ question, answer, isOpen, toggleOpen }) => {
 };
 
 export default function FaqPage() {
-    // État pour gérer l'ouverture/fermeture des réponses
     const [openIndex, setOpenIndex] = useState({});
 
     const toggleOpen = (categoryIndex, questionIndex) => {
@@ -130,37 +131,41 @@ export default function FaqPage() {
     };
 
     return (
-        <div className="container mx-auto px-4 py-16">
+        // Conteneur principal avec padding généreux et fond léger
+        <div className="container mx-auto px-6 py-12 sm:py-16 bg-gray-50 font-sans">
             {/* Section d'Introduction */}
             <motion.div
-                className="text-center mb-16 bg-gradient-to-r from-teal-500 to-emerald-600 text-white p-12 rounded-3xl shadow-xl"
+                className="text-center mb-12 sm:mb-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 sm:p-12 rounded-3xl shadow-xl mx-auto max-w-4xl" // Couleurs, padding et largeur max ajustés
                 initial={{ opacity: 0, y: -50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
             >
-                <h1 className="text-6xl font-extrabold leading-tight mb-4">
-                    Vos Questions, Nos Réponses
+                {/* Titre responsive avec Poppins (font-heading) */}
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold leading-tight mb-4">
+                    Vos <span className="text-yellow-300">Questions</span>, Nos Réponses
                 </h1>
-                <p className="text-xl max-w-3xl mx-auto opacity-90">
+                {/* Paragraphe descriptif responsive */}
+                <p className="text-base sm:text-lg max-w-3xl mx-auto opacity-90 px-4">
                     Trouvez rapidement les informations dont vous avez besoin. Nous avons regroupé les questions les plus fréquentes pour vous offrir des réponses claires et concises.
                 </p>
             </motion.div>
 
             {/* Catégories de FAQ */}
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-4xl mx-auto px-4"> {/* Padding horizontal ajouté pour les petites tailles d'écran */}
                 {faqData.map((category, catIndex) => (
                     <motion.div
                         key={catIndex}
-                        className="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 mb-12"
+                        className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-100 mb-8 sm:mb-12" // Padding et marge ajustés
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 0.2 + catIndex * 0.15 }}
                     >
-                        <h2 className="text-4xl font-bold text-gray-900 mb-8 text-center flex items-center justify-center">
-                            <category.icon className="text-blue-600 mr-4 text-4xl" />
+                        {/* Titre de catégorie avec Poppins et icône */}
+                        <h2 className="text-2xl sm:text-3xl font-heading font-bold text-gray-900 mb-6 sm:mb-8 text-center flex flex-col sm:flex-row items-center justify-center leading-tight"> {/* Taille responsive, alignement icône/texte */}
+                            <category.icon className="text-blue-600 mr-0 sm:mr-4 text-3xl sm:text-4xl mb-2 sm:mb-0" /> {/* Taille d'icône responsive, marge pour mobile */}
                             {category.category}
                         </h2>
-                        <div className="space-y-6">
+                        <div className="space-y-4 sm:space-y-6"> {/* Espacement responsif entre les questions */}
                             {category.questions.map((item, qIndex) => (
                                 <FAQItem
                                     key={qIndex}
@@ -177,20 +182,21 @@ export default function FaqPage() {
 
             {/* Appel à l'Action Final */}
             <motion.div
-                className="text-center mt-20 bg-blue-700 text-white py-16 rounded-3xl shadow-xl"
+                className="text-center mt-16 sm:mt-20 bg-blue-700 text-white py-12 sm:py-16 rounded-3xl shadow-xl mx-auto max-w-4xl px-6" // Marges, padding et largeur max ajustés
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: faqData.length * 0.15 + 0.4 }}
             >
-                <h2 className="text-5xl font-bold mb-6 leading-tight">
+                {/* Titre avec Poppins */}
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-6 leading-tight">
                     Une Question Non Répertoriée ?
                 </h2>
-                <p className="text-xl mb-10 max-w-3xl mx-auto opacity-95">
+                <p className="text-base sm:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto px-4"> {/* Taille de texte et marge responsives */}
                     Notre équipe est là pour vous aider ! Contactez-nous directement pour toute demande spécifique ou assistance.
                 </p>
                 <Link href="/contact" passHref>
                     <motion.button
-                        className="inline-block bg-white text-blue-700 font-bold py-4 px-12 rounded-full text-2xl shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
+                        className="inline-block bg-white text-blue-700 font-bold py-3.5 sm:py-4 px-8 sm:px-12 rounded-full text-lg sm:text-2xl shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105" // Padding et taille de texte responsive
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                     >
