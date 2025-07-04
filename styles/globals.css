@@ -40,11 +40,7 @@ body {
 
   /* Pour Firefox */
   scrollbar-width: none;
-  /* Cache la barre de défilement visuellement */
 
-  /* Pour Internet Explorer/Edge Legacy (moins courant de nos jours) */
   -ms-overflow-style: none;
   /* Cache la barre de défilement visuellement */
 }
-
-/* --- FIN DE LA CORRECTION POUR LE SAUT DE LA FENÊTRE --- */
