@@ -59,7 +59,6 @@ function Navbar() {
                     <Link href="/tarifs" className="text-white text-lg hover:text-yellow-400 transition duration-300">Tarifs</Link>
                     <Link href="/suivi" className="text-white text-lg hover:text-yellow-400 transition duration-300">Suivi</Link>
                     <Link href="/contact" className="text-white text-lg hover:text-yellow-400 transition duration-300">Contact</Link>
-                    <Link href="/faq" className="text-white text-lg hover:text-yellow-400 transition duration-300">FAQ</Link>
                     <motion.a
                         href="/devis"
                         className="bg-yellow-500 text-blue-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-400 transition-colors duration-300 text-lg"

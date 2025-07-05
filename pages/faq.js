@@ -1,6 +1,7 @@
 // pages/faq.jsx
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import Navbar from '@/components/Navbar';
 import { FaQuestionCircle, FaShippingFast, FaDollarSign, FaUserTie, FaSyncAlt } from 'react-icons/fa'; // Added FaSyncAlt for updates
 import Link from 'next/link';
 
@@ -131,79 +132,86 @@ export default function FaqPage() {
     };
 
     return (
+        <>
+            <Navbar />
+
+
+
         // Conteneur principal avec padding généreux et fond léger
-        <div className="container mx-auto px-6 py-12 sm:py-16 bg-gray-50 font-sans">
-            {/* Section d'Introduction */}
-            <motion.div
-                className="text-center mb-12 sm:mb-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 sm:p-12 rounded-3xl shadow-xl mx-auto max-w-4xl" // Couleurs, padding et largeur max ajustés
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-            >
-                {/* Titre responsive avec Poppins (font-heading) */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold leading-tight mb-4">
-                    Vos <span className="text-yellow-300">Questions</span>, Nos Réponses
-                </h1>
-                {/* Paragraphe descriptif responsive */}
-                <p className="text-base sm:text-lg max-w-3xl mx-auto opacity-90 px-4">
-                    Trouvez rapidement les informations dont vous avez besoin. Nous avons regroupé les questions les plus fréquentes pour vous offrir des réponses claires et concises.
-                </p>
-            </motion.div>
+            <div className="container mx-auto px-6 py-12 sm:py-16 bg-gray-50 font-sans">
+                {/* Section d'Introduction */}
+                <motion.div
+                    className="text-center mb-12 sm:mb-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 sm:p-12 rounded-3xl shadow-xl mx-auto max-w-4xl" // Couleurs, padding et largeur max ajustés
+                    initial={{ opacity: 0, y: -50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7 }}
+                >
+                    {/* Titre responsive avec Poppins (font-heading) */}
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold leading-tight mb-4">
+                        Vos <span className="text-yellow-300">Questions</span>, Nos Réponses
+                    </h1>
+                    {/* Paragraphe descriptif responsive */}
+                    <p className="text-base sm:text-lg max-w-3xl mx-auto opacity-90 px-4">
+                        Trouvez rapidement les informations dont vous avez besoin. Nous avons regroupé les questions les plus fréquentes pour vous offrir des réponses claires et concises.
+                    </p>
+                </motion.div>
 
-            {/* Catégories de FAQ */}
-            <div className="max-w-4xl mx-auto px-4"> {/* Padding horizontal ajouté pour les petites tailles d'écran */}
-                {faqData.map((category, catIndex) => (
-                    <motion.div
-                        key={catIndex}
-                        className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-100 mb-8 sm:mb-12" // Padding et marge ajustés
-                        initial={{ opacity: 0, y: 50 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, delay: 0.2 + catIndex * 0.15 }}
-                    >
-                        {/* Titre de catégorie avec Poppins et icône */}
-                        <h2 className="text-2xl sm:text-3xl font-heading font-bold text-gray-900 mb-6 sm:mb-8 text-center flex flex-col sm:flex-row items-center justify-center leading-tight"> {/* Taille responsive, alignement icône/texte */}
-                            <category.icon className="text-blue-600 mr-0 sm:mr-4 text-3xl sm:text-4xl mb-2 sm:mb-0" /> {/* Taille d'icône responsive, marge pour mobile */}
-                            {category.category}
-                        </h2>
-                        <div className="space-y-4 sm:space-y-6"> {/* Espacement responsif entre les questions */}
-                            {category.questions.map((item, qIndex) => (
-                                <FAQItem
-                                    key={qIndex}
-                                    question={item.question}
-                                    answer={item.answer}
-                                    isOpen={openIndex[`${catIndex}-${qIndex}`]}
-                                    toggleOpen={() => toggleOpen(catIndex, qIndex)}
-                                />
-                            ))}
-                        </div>
-                    </motion.div>
-                ))}
+                {/* Catégories de FAQ */}
+                <div className="max-w-4xl mx-auto px-4"> {/* Padding horizontal ajouté pour les petites tailles d'écran */}
+                    {faqData.map((category, catIndex) => (
+                        <motion.div
+                            key={catIndex}
+                            className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-100 mb-8 sm:mb-12" // Padding et marge ajustés
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.7, delay: 0.2 + catIndex * 0.15 }}
+                        >
+                            {/* Titre de catégorie avec Poppins et icône */}
+                            <h2 className="text-2xl sm:text-3xl font-heading font-bold text-gray-900 mb-6 sm:mb-8 text-center flex flex-col sm:flex-row items-center justify-center leading-tight"> {/* Taille responsive, alignement icône/texte */}
+                                <category.icon className="text-blue-600 mr-0 sm:mr-4 text-3xl sm:text-4xl mb-2 sm:mb-0" /> {/* Taille d'icône responsive, marge pour mobile */}
+                                {category.category}
+                            </h2>
+                            <div className="space-y-4 sm:space-y-6"> {/* Espacement responsif entre les questions */}
+                                {category.questions.map((item, qIndex) => (
+                                    <FAQItem
+                                        key={qIndex}
+                                        question={item.question}
+                                        answer={item.answer}
+                                        isOpen={openIndex[`${catIndex}-${qIndex}`]}
+                                        toggleOpen={() => toggleOpen(catIndex, qIndex)}
+                                    />
+                                ))}
+                            </div>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* Appel à l'Action Final */}
+                <motion.div
+                    className="text-center mt-16 sm:mt-20 bg-blue-700 text-white py-12 sm:py-16 rounded-3xl shadow-xl mx-auto max-w-4xl px-6" // Marges, padding et largeur max ajustés
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: faqData.length * 0.15 + 0.4 }}
+                >
+                    {/* Titre avec Poppins */}
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-6 leading-tight">
+                        Une Question Non Répertoriée ?
+                    </h2>
+                    <p className="text-base sm:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto px-4"> {/* Taille de texte et marge responsives */}
+                        Notre équipe est là pour vous aider ! Contactez-nous directement pour toute demande spécifique ou assistance.
+                    </p>
+                    <Link href="/contact" passHref>
+                        <motion.button
+                            className="inline-block bg-white text-blue-700 font-bold py-3.5 sm:py-4 px-8 sm:px-12 rounded-full text-lg sm:text-2xl shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105" // Padding et taille de texte responsive
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            Nous Contacter
+                        </motion.button>
+                    </Link>
+                </motion.div>
             </div>
+        </>
 
-            {/* Appel à l'Action Final */}
-            <motion.div
-                className="text-center mt-16 sm:mt-20 bg-blue-700 text-white py-12 sm:py-16 rounded-3xl shadow-xl mx-auto max-w-4xl px-6" // Marges, padding et largeur max ajustés
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: faqData.length * 0.15 + 0.4 }}
-            >
-                {/* Titre avec Poppins */}
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold mb-6 leading-tight">
-                    Une Question Non Répertoriée ?
-                </h2>
-                <p className="text-base sm:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto px-4"> {/* Taille de texte et marge responsives */}
-                    Notre équipe est là pour vous aider ! Contactez-nous directement pour toute demande spécifique ou assistance.
-                </p>
-                <Link href="/contact" passHref>
-                    <motion.button
-                        className="inline-block bg-white text-blue-700 font-bold py-3.5 sm:py-4 px-8 sm:px-12 rounded-full text-lg sm:text-2xl shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105" // Padding et taille de texte responsive
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
-                        Nous Contacter
-                    </motion.button>
-                </Link>
-            </motion.div>
-        </div>
     );
 }
