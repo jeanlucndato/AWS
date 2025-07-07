@@ -29,7 +29,6 @@ export default function ContactPage() {
         <>
             <Navbar />
 
-        // Utilisation d'un padding vertical plus généreux et un fond subtil
             <div className="container mx-auto px-6 py-12 sm:py-16 bg-gray-50 font-sans"> {/* Ajout de px-6 pour petits écrans et font-sans par défaut */}
                 {/* Hero Section */}
                 <motion.div

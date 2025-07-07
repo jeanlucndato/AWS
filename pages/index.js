@@ -12,7 +12,6 @@ export default function Home() {
     <>
       <Navbar />
 
-        // Utilise un padding vertical plus généreux et une couleur de fond subtile pour le conteneur principal
       <div className="space-y-16 py-8 sm:py-12 bg-gray-50"> {/* Augmentation du space-y et padding global */}
         {/* Section Héro - Supposée être déjà stylisée dans HeroSection.jsx */}
         <HeroSection />

@@ -84,7 +84,6 @@ export default function TrackingPage() {
     return (
         <>
             <Navbar />
-             // Conteneur principal avec padding généreux et fond léger
             <div className="container mx-auto px-6 py-12 sm:py-16 bg-gray-50 font-sans">
                 {/* Hero Section */}
                 <motion.div
