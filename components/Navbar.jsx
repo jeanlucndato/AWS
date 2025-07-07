@@ -92,7 +92,7 @@ function Navbar() {
                         <Link href="/tarifs" className="block text-white text-lg hover:text-yellow-400 py-2 border-b border-blue-600 last:border-b-0" onClick={() => setIsOpen(false)}>Tarifs</Link>
                         <Link href="/suivi" className="block text-white text-lg hover:text-yellow-400 py-2 border-b border-blue-600 last:border-b-0" onClick={() => setIsOpen(false)}>Suivi</Link>
                         <Link href="/contact" className="block text-white text-lg hover:text-yellow-400 py-2 border-b border-blue-600 last:border-b-0" onClick={() => setIsOpen(false)}>Contact</Link>
-                        <Link href="/faq" className="block text-white text-lg hover:text-yellow-400 py-2 border-b border-blue-600 last:border-b-0" onClick={() => setIsOpen(false)}>FAQ</Link>
+                        {/* <Link href="/faq" className="block text-white text-lg hover:text-yellow-400 py-2 border-b border-blue-600 last:border-b-0" onClick={() => setIsOpen(false)}>FAQ</Link> */}
                         <motion.a
                             href="/devis"
                             className="block bg-yellow-500 text-blue-900 px-6 py-3 mt-4 rounded-full font-semibold text-center hover:bg-yellow-400 transition-colors duration-300 text-lg"
