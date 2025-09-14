@@ -1,10 +1,9 @@
 // pages/services.jsx
 import { motion } from 'framer-motion';
-import { FaPlane, FaShip, FaBox, FaGlobeAfrica, FaRegCheckCircle, FaClipboardCheck, FaUsers, FaLightbulb } from 'react-icons/fa'; // Icons for services and features
+import { FaPlane, FaShip, FaBox, FaGlobeAfrica, FaRegCheckCircle, FaClipboardCheck, FaUsers, FaLightbulb } from 'react-icons/fa';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
 
-// Data for each service offered
 const serviceOfferings = [
     {
         title: "Fret Aérien Express",
@@ -55,153 +54,140 @@ export default function ServicesPage() {
         <>
             <Navbar />
 
-            <div className="container mx-auto px-6 py-12 sm:py-16 bg-gray-50 font-sans">
+            <div className="container mx-auto px-6 py-12 sm:py-16 bg-gray-50 font-sans min-h-screen">
                 {/* Hero Section */}
                 <motion.div
-                    className="text-center mb-12 sm:mb-16 bg-gradient-to-r from-blue-600 to-blue-800 text-white p-8 sm:p-12 rounded-3xl shadow-xl mx-auto max-w-4xl" // Padding et largeur max ajustés
+                    className="text-center mb-14 sm:mb-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white p-10 sm:p-14 rounded-3xl shadow-xl mx-auto max-w-4xl font-heading"
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7 }}
                 >
-                    {/* Titre responsive avec Poppins (font-heading) */}
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold leading-tight mb-4">
+                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4">
                         Nos Solutions de <span className="text-yellow-300">Livraison Globales</span>
                     </h1>
-                    {/* Paragraphe descriptif responsive */}
-                    <p className="text-base sm:text-lg max-w-3xl mx-auto opacity-90 px-4"> {/* Padding horizontal pour mobile */}
+                    <p className="text-base sm:text-lg max-w-3xl mx-auto opacity-90 px-4">
                         Découvrez la gamme complète de nos services d'expédition, conçus pour connecter la Belgique et Goma avec efficacité, sécurité et transparence.
                     </p>
                 </motion.div>
 
-                {/* Section des Cartes de Services */}
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold text-center mb-10 sm:mb-14 text-gray-800 leading-tight">
+                {/* Services Grid */}
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold text-center mb-12 sm:mb-16 text-gray-800 leading-tight">
                     Nos Prestations <span className="text-blue-700">Détaillées</span>
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 mb-20"> {/* Espacement responsif */}
-                    {serviceOfferings.map((service, index) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 mb-24">
+                    {serviceOfferings.map((service, idx) => (
                         <motion.div
-                            key={index}
-                            className="bg-white p-8 sm:p-10 rounded-2xl shadow-xl border border-blue-100 flex flex-col items-center text-center transform hover:scale-105 transition-all duration-300 relative overflow-hidden group" // Padding responsif, effet hover
-                            initial={{ opacity: 0, y: 50 }}
+                            key={idx}
+                            className="relative bg-white p-8 sm:p-10 rounded-2xl shadow-xl border border-blue-100 flex flex-col items-center text-center group hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
+                            initial={{ opacity: 0, y: 40 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.7, delay: 0.2 + index * 0.15 }}
-                            whileHover={{ boxShadow: "0 20px 30px rgba(0,0,0,0.18)" }}
+                            transition={{ duration: 0.7, delay: 0.2 + idx * 0.15 }}
+                            whileHover={{ scale: 1.05 }}
                         >
-                            {/* Effets de fond subtils pour le design */}
-                            <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full opacity-60 transform translate-x-1/3 -translate-y-1/3 group-hover:scale-110 transition-transform duration-300"></div>
-                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-blue-50 rounded-tr-full opacity-60 transform -translate-x-1/3 translate-y-1/3 group-hover:scale-110 transition-transform duration-300"></div>
+                            {/* Decorative backgrounds */}
+                            <div className="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full opacity-60 transform translate-x-1/3 -translate-y-1/3 group-hover:scale-110 transition-transform duration-300 pointer-events-none"></div>
+                            <div className="absolute bottom-0 left-0 w-24 h-24 bg-blue-50 rounded-tr-full opacity-60 transform -translate-x-1/3 translate-y-1/3 group-hover:scale-110 transition-transform duration-300 pointer-events-none"></div>
 
-                            {/* Icône du service */}
+                            {/* Icon */}
                             <div className="p-4 sm:p-5 rounded-full bg-blue-600 text-white mb-6 border-4 border-white z-10 shadow-lg group-hover:bg-blue-700 transition-colors duration-300">
-                                <service.icon className="text-4xl sm:text-5xl" /> {/* Taille d'icône responsive */}
+                                <service.icon className="text-4xl sm:text-5xl" />
                             </div>
-                            {/* Titre du service avec Poppins */}
-                            <h2 className="text-2xl sm:text-3xl font-heading font-bold text-gray-900 mb-4">{service.title}</h2>
-                            {/* Description du service */}
-                            <p className="text-base text-gray-700 mb-8 flex-grow leading-relaxed">{service.description}</p>
 
-                            {/* Liste des fonctionnalités */}
-                            <ul className="text-left text-gray-700 space-y-3 w-full mb-8 text-sm sm:text-base"> {/* Taille de texte responsive pour les features */}
-                                {service.features.map((feature, idx) => (
-                                    <li key={idx} className="flex items-start">
+                            {/* Title */}
+                            <h3 className="text-2xl sm:text-3xl font-heading font-bold text-gray-900 mb-4">{service.title}</h3>
+
+                            {/* Description */}
+                            <p className="text-gray-700 mb-8 flex-grow leading-relaxed text-base sm:text-lg">{service.description}</p>
+
+                            {/* Features list */}
+                            <ul className="text-left text-gray-700 space-y-3 w-full mb-8 text-sm sm:text-base">
+                                {service.features.map((feat, i) => (
+                                    <li key={i} className="flex items-start">
                                         <FaRegCheckCircle className="text-green-500 mr-3 mt-1 flex-shrink-0 text-lg" />
-                                        <span>{feature}</span>
+                                        <span>{feat}</span>
                                     </li>
                                 ))}
                             </ul>
 
-                            {/* Bouton d'appel à l'action */}
+                            {/* CTA Button */}
                             <Link href={service.link} passHref>
                                 <motion.button
-                                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 sm:py-4 px-6 rounded-lg text-lg shadow-md transition-all duration-300 flex items-center justify-center"
+                                    className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 sm:py-4 px-6 rounded-lg text-lg shadow-md flex items-center justify-center transition-transform duration-300"
                                     whileHover={{ scale: 1.02, boxShadow: "0 10px 20px rgba(0,0,0,0.15)" }}
                                     whileTap={{ scale: 0.98 }}
                                 >
                                     {service.callToAction}
-                                    <FaClipboardCheck className="ml-3 text-xl" /> {/* Icône plus grande */}
+                                    <FaClipboardCheck className="ml-3 text-xl" />
                                 </motion.button>
                             </Link>
                         </motion.div>
                     ))}
                 </div>
 
-                {/* Why Choose Us / Value Proposition Section */}
-                <motion.div
-                    className="text-center bg-blue-50 py-12 sm:py-16 rounded-3xl shadow-inner mb-20 max-w-6xl mx-auto px-6 sm:px-8" // Padding et largeur max ajustés
-                    initial={{ opacity: 0, y: 50 }}
+                {/* Value Proposition */}
+                <motion.section
+                    className="text-center bg-blue-50 py-12 sm:py-16 rounded-3xl shadow-inner mb-24 max-w-6xl mx-auto px-6 sm:px-8"
+                    initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.7 }}
                 >
-                    {/* Titre Poppins pour la section des avantages */}
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold text-blue-800 mb-10 leading-tight">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold text-blue-800 mb-12 leading-tight">
                         Pourquoi Choisir <span className="text-blue-700">Afrika World Services</span> ?
                     </h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-4">
-                        {/* Carte d'avantage 1 */}
-                        <motion.div
-                            className="flex flex-col items-center p-6 bg-white rounded-xl shadow-md border border-gray-100 transform hover:translate-y-[-5px] transition-transform duration-200"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: 0.8 }}
-                        >
-                            <FaGlobeAfrica className="text-blue-500 text-4xl sm:text-5xl mb-4" /> {/* Taille d'icône responsive */}
-                            <h3 className="font-heading font-bold text-lg sm:text-xl text-gray-900 mb-2">Expertise Locale & Internationale</h3>
-                            <p className="text-gray-700 text-sm sm:text-base">Maîtrise parfaite des itinéraires Belgique-RDC.</p>
-                        </motion.div>
-                        {/* Carte d'avantage 2 */}
-                        <motion.div
-                            className="flex flex-col items-center p-6 bg-white rounded-xl shadow-md border border-gray-100 transform hover:translate-y-[-5px] transition-transform duration-200"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: 0.9 }}
-                        >
-                            <FaRegCheckCircle className="text-emerald-500 text-4xl sm:text-5xl mb-4" />
-                            <h3 className="font-heading font-bold text-lg sm:text-xl text-gray-900 mb-2">Fiabilité et Sécurité</h3>
-                            <p className="text-gray-700 text-sm sm:text-base">Vos colis arrivent à destination en toute intégrité.</p>
-                        </motion.div>
-                        {/* Carte d'avantage 3 */}
-                        <motion.div
-                            className="flex flex-col items-center p-6 bg-white rounded-xl shadow-md border border-gray-100 transform hover:translate-y-[-5px] transition-transform duration-200"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: 1.0 }}
-                        >
-                            <FaUsers className="text-purple-500 text-4xl sm:text-5xl mb-4" />
-                            <h3 className="font-heading font-bold text-lg sm:text-xl text-gray-900 mb-2">Support Client Dévoué</h3>
-                            <p className="text-gray-700 text-sm sm:text-base">Une équipe disponible pour toutes vos questions.</p>
-                        </motion.div>
-                        {/* Carte d'avantage 4 */}
-                        <motion.div
-                            className="flex flex-col items-center p-6 bg-white rounded-xl shadow-md border border-gray-100 transform hover:translate-y-[-5px] transition-transform duration-200"
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5, delay: 1.1 }}
-                        >
-                            <FaLightbulb className="text-orange-500 text-4xl sm:text-5xl mb-4" />
-                            <h3 className="font-heading font-bold text-lg sm:text-xl text-gray-900 mb-2">Solutions Personnalisées</h3>
-                            <p className="text-gray-700 text-sm sm:text-base">Des services adaptés à chaque besoin unique.</p>
-                        </motion.div>
+                        {[
+                            {
+                                icon: FaGlobeAfrica,
+                                title: "Expertise Locale & Internationale",
+                                desc: "Maîtrise parfaite des itinéraires Belgique-RDC."
+                            },
+                            {
+                                icon: FaRegCheckCircle,
+                                title: "Fiabilité et Sécurité",
+                                desc: "Vos colis arrivent à destination en toute intégrité."
+                            },
+                            {
+                                icon: FaUsers,
+                                title: "Support Client Dévoué",
+                                desc: "Une équipe disponible pour toutes vos questions."
+                            },
+                            {
+                                icon: FaLightbulb,
+                                title: "Solutions Personnalisées",
+                                desc: "Des services adaptés à chaque besoin unique."
+                            }
+                        ].map(({ icon: Icon, title, desc }, i) => (
+                            <motion.div
+                                key={i}
+                                className="flex flex-col items-center p-6 bg-white rounded-xl shadow-md border border-gray-100 hover:-translate-y-1 transition-transform duration-200"
+                                initial={{ opacity: 0, scale: 0.85 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                transition={{ duration: 0.5, delay: 0.8 + i * 0.1 }}
+                            >
+                                <Icon className="text-4xl sm:text-5xl mb-4 text-blue-600" />
+                                <h3 className="font-heading font-bold text-lg sm:text-xl text-gray-900 mb-2">{title}</h3>
+                                <p className="text-gray-700 text-sm sm:text-base">{desc}</p>
+                            </motion.div>
+                        ))}
                     </div>
-                </motion.div>
+                </motion.section>
 
-                {/* Final Call to Action */}
+                {/* Final CTA */}
                 <motion.div
-                    className="text-center mt-16 sm:mt-20 bg-blue-700 text-white py-12 sm:py-16 rounded-3xl shadow-xl mx-auto max-w-5xl px-6 sm:px-8" // Marges, padding et largeur max ajustés
-                    initial={{ opacity: 0, y: 50 }}
+                    className="text-center mt-16 sm:mt-20 bg-blue-700 text-white py-14 sm:py-16 rounded-3xl shadow-xl mx-auto max-w-5xl px-6 sm:px-8 font-heading"
+                    initial={{ opacity: 0, y: 40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 1.2 }}
                 >
-                    {/* Titre responsive avec Poppins */}
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-heading font-extrabold mb-6 leading-tight">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold mb-6 leading-tight">
                         Prêt à Expédier avec <span className="text-yellow-300">Confiance</span> ?
                     </h2>
-                    {/* Paragraphe descriptif responsive */}
-                    <p className="text-base sm:text-lg mb-8 sm:mb-10 max-w-3xl mx-auto opacity-95 px-4"> {/* Padding horizontal pour mobile */}
+                    <p className="text-base sm:text-lg mb-8 sm:mb-10 max-w-3xl mx-auto opacity-95 px-4">
                         Quel que soit votre besoin, nous avons la solution. Contactez-nous dès aujourd'hui pour démarrer votre envoi.
                     </p>
                     <Link href="/contact" passHref>
                         <motion.button
-                            className="inline-block bg-white text-blue-700 font-bold py-3 sm:py-4 px-8 sm:px-12 rounded-full text-lg sm:text-xl shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105" // Padding et taille de texte responsive
+                            className="inline-block bg-white text-blue-700 font-bold py-3 sm:py-4 px-10 sm:px-12 rounded-full text-lg sm:text-xl shadow-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
@@ -211,6 +197,5 @@ export default function ServicesPage() {
                 </motion.div>
             </div>
         </>
-
     );
 }

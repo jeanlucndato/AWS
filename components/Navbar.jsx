@@ -1,126 +1,155 @@
 // components/layout/Navbar.jsx
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router'; // Importe useRouter pour écouter les changements de route
+import { useRouter } from 'next/router';
 import { FaBars, FaTimes, FaShippingFast } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
-    const router = useRouter(); // Initialise le hook useRouter
+    const router = useRouter();
 
-    // Effet pour gérer le défilement du body et fermer le menu lors d'un changement de route
     useEffect(() => {
         if (isOpen) {
-            // Empêche le défilement du body lorsque le menu est ouvert
             document.body.style.overflow = 'hidden';
             document.documentElement.style.overflow = 'hidden';
         } else {
-            // Rétablit le défilement normal lorsque le menu est fermé
-            document.body.style.overflow = ''; // Réinitialise à la valeur par défaut
-            document.documentElement.style.overflow = ''; // Réinitialise à la valeur par défaut
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
         }
 
-        // Écoute les changements de route pour fermer le menu mobile
-        // Ceci est crucial pour s'assurer que le défilement est restauré même si l'utilisateur navigue
         const handleRouteChange = () => {
-            setIsOpen(false); // Ferme le menu
+            setIsOpen(false);
         };
 
-        router.events.on('routeChangeStart', handleRouteChange); // S'abonne à l'événement
+        router.events.on('routeChangeStart', handleRouteChange);
 
-        // Fonction de nettoyage: s'exécute lorsque le composant est démonté ou avant que l'effet ne se réexécute
         return () => {
-            document.body.style.overflow = ''; // Assure que le défilement est restauré au démontage
-            document.documentElement.style.overflow = ''; // Assure que le défilement est restauré au démontage
-            router.events.off('routeChangeStart', handleRouteChange); // Désabonne l'écouteur d'événements
+            document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
+            router.events.off('routeChangeStart', handleRouteChange);
         };
-    }, [isOpen, router.events]); // L'effet s'exécute chaque fois que 'isOpen' ou 'router.events' change
+    }, [isOpen, router.events]);
 
     const navVariants = {
-        hidden: { opacity: 0, y: -20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+        hidden: { opacity: 0, y: -25 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
     };
 
     const mobileMenuVariants = {
-        // Commence complètement hors écran à droite
-        hidden: { opacity: 0, x: "100%" },
-        // Glisse en place
-        visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: "easeOut" } },
-        // Glisse hors écran à droite à la sortie
-        exit: { opacity: 0, x: "100%", transition: { duration: 0.2, ease: "easeIn" } },
+        hidden: { opacity: 0, x: '100%' },
+        visible: { opacity: 1, x: 0, transition: { duration: 0.3, ease: 'easeOut' } },
+        exit: { opacity: 0, x: '100%', transition: { duration: 0.2, ease: 'easeIn' } },
     };
 
     return (
         <motion.nav
-            // Ajout de z-50 pour s'assurer que la barre de navigation principale est toujours au-dessus
-            className="bg-blue-800 p-4 shadow-lg sticky top-0 z-50"
+            className="bg-blue-800 p-5 shadow-lg sticky top-0 z-50"
             initial="hidden"
             animate="visible"
             variants={navVariants}
         >
-            <div className="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8">
+            <div className="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 max-w-7xl">
                 {/* Logo */}
-                <Link href="/" className="flex items-center text-white text-2xl md:text-3xl font-bold">
-                    <FaShippingFast className="mr-2 text-yellow-400 text-3xl md:text-4xl" />
+                <Link href="/" className="flex items-center text-white text-3xl md:text-4xl font-extrabold tracking-wide">
+                    <FaShippingFast className="mr-3 text-yellow-400 text-4xl md:text-5xl" />
                     AWS
                 </Link>
 
                 {/* Menu Desktop */}
-                <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-                    <Link href="/" className="text-white text-lg hover:text-yellow-400 transition duration-300">Accueil</Link>
-                    <Link href="/services" className="text-white text-lg hover:text-yellow-400 transition duration-300">Services</Link>
-                    <Link href="/tarifs" className="text-white text-lg hover:text-yellow-400 transition duration-300">Tarifs</Link>
-                    <Link href="/suivi" className="text-white text-lg hover:text-yellow-400 transition duration-300">Suivi</Link>
-                    <Link href="/contact" className="text-white text-lg hover:text-yellow-400 transition duration-300">Contact</Link>
+                <div className="hidden md:flex items-center space-x-8 lg:space-x-10">
+                    {[
+                        { href: '/', label: 'Accueil' },
+                        { href: '/services', label: 'Services' },
+                        { href: '/tarifs', label: 'Tarifs' },
+                        // { href: '/suivi', label: 'Suivi' },
+                        { href: '/contact', label: 'Contact' },
+                    ].map(({ href, label }) => (
+                        <Link
+                            key={href}
+                            href={href}
+                            className="text-white text-lg font-semibold hover:text-yellow-400 transition duration-300"
+                        >
+                            {label}
+                        </Link>
+                    ))}
+
                     <motion.a
-                        href="/devis"
-                        className="bg-yellow-500 text-blue-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-400 transition-colors duration-300 text-lg"
-                        whileHover={{ scale: 1.05 }}
+                        href="https://mangonets.com/"
+                        className="bg-orange-500 text-white px-8 py-3 rounded-full font-bold hover:bg-orange-400 transition-colors duration-300 text-lg shadow-md"
+                        whileHover={{ scale: 1.06 }}
                         whileTap={{ scale: 0.95 }}
+                        initial={{ scale: 1 }}
+                        animate={{
+                            scale: [1, 1.05, 1],
+                            transition: {
+                                duration: 1.5,
+                                repeat: Infinity,
+                                ease: "easeInOut"
+                            }
+                        }}
                     >
-                        Obtenir un Devis
+                        Achetez sur Mangonets
+
                     </motion.a>
                 </div>
 
                 {/* Bouton Menu Mobile */}
                 <div className="md:hidden">
-                    <button onClick={() => setIsOpen(!isOpen)} className="text-white focus:outline-none p-2 rounded-md hover:bg-blue-700">
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="text-white focus:outline-none p-2 rounded-md hover:bg-blue-700 active:ring-2 active:ring-yellow-400 transition"
+                        aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+                    >
                         {isOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
                     </button>
                 </div>
             </div>
 
-            {/* Menu Mobile (affiché conditionnellement avec Framer Motion) */}
+            {/* Menu Mobile */}
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        // Utilise 'fixed' pour qu'il couvre toute la fenêtre visible
-                        // 'inset-0' le fait s'étendre sur tout l'écran
-                        // 'top-[64px]' le positionne juste en dessous de la barre de navigation principale (ajuste si la hauteur de ta nav est différente)
-                        // 'overflow-y-auto' permet le défilement du contenu du menu si nécessaire
-                        // 'z-40' le place au-dessus du contenu de la page mais en dessous de la barre de navigation principale (qui est z-50)
-                        className="md:hidden bg-blue-700 fixed inset-0 top-[64px] py-4 px-6 space-y-4 shadow-lg overflow-y-auto z-40"
+                        className="md:hidden fixed inset-0 top-[64px] bg-blue-700 py-6 px-8 space-y-6 shadow-2xl overflow-y-auto z-40"
                         initial="hidden"
                         animate="visible"
                         exit="exit"
                         variants={mobileMenuVariants}
                     >
-                        {/* Liens du menu mobile */}
-                        <Link href="/" className="block text-white text-lg hover:text-yellow-400 py-2 border-b border-blue-600 last:border-b-0" onClick={() => setIsOpen(false)}>Accueil</Link>
-                        <Link href="/services" className="block text-white text-lg hover:text-yellow-400 py-2 border-b border-blue-600 last:border-b-0" onClick={() => setIsOpen(false)}>Services</Link>
-                        <Link href="/tarifs" className="block text-white text-lg hover:text-yellow-400 py-2 border-b border-blue-600 last:border-b-0" onClick={() => setIsOpen(false)}>Tarifs</Link>
-                        <Link href="/suivi" className="block text-white text-lg hover:text-yellow-400 py-2 border-b border-blue-600 last:border-b-0" onClick={() => setIsOpen(false)}>Suivi</Link>
-                        <Link href="/contact" className="block text-white text-lg hover:text-yellow-400 py-2 border-b border-blue-600 last:border-b-0" onClick={() => setIsOpen(false)}>Contact</Link>
+                        {[
+                            { href: '/', label: 'Accueil' },
+                            { href: '/services', label: 'Services' },
+                            { href: '/tarifs', label: 'Tarifs' },
+                            // { href: '/suivi', label: 'Suivi' },
+                            { href: '/contact', label: 'Contact' },
+                        ].map(({ href, label }) => (
+                            <Link
+                                key={href}
+                                href={href}
+                                className="block text-white text-xl font-semibold hover:text-yellow-400 py-3 border-b border-blue-600 last:border-b-0 transition-colors"
+                                onClick={() => setIsOpen(false)}
+                            >
+                                {label}
+                            </Link>
+                        ))}
 
                         <motion.a
-                            href="/devis"
-                            className="block bg-yellow-500 text-blue-900 px-6 py-3 mt-4 rounded-full font-semibold text-center hover:bg-yellow-400 transition-colors duration-300 text-lg"
-                            whileHover={{ scale: 1.05 }}
+                            href="https://mangonets.com/"
+                            className="block bg-orange-500 text-white px-8 py-4 rounded-full font-bold text-center hover:bg-orange-400 transition-colors duration-300 text-xl shadow-md"
+                            whileHover={{ scale: 1.06 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => setIsOpen(false)}
+                            initial={{ scale: 1 }}
+                            animate={{
+                                scale: [1, 1.05, 1], // Anime de la taille normale, à légèrement plus grande, puis revient à la normale
+                                transition: {
+                                    duration: 1.5,
+                                    repeat: Infinity, // Répète l'animation à l'infini
+                                    ease: "easeInOut"
+                                }
+                            }}
                         >
-                            Obtenir un Devis
+                            Achetez sur Mangonets
                         </motion.a>
                     </motion.div>
                 )}

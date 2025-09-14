@@ -2,6 +2,7 @@
 // import Navbar from '../Navbar';
 import Footer from './Footer';
 import Head from 'next/head';
+import WhatsAppButton from '../WhatsAppButton';
 
 function Layout({ children }) {
     return (
@@ -18,6 +19,7 @@ function Layout({ children }) {
                 <main className="">
                     {children}
                 </main>
+                <WhatsAppButton />
                 <Footer />
             </div>
         </>

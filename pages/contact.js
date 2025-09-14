@@ -1,6 +1,6 @@
 // pages/contact.jsx
 import { motion } from 'framer-motion';
-import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaTwitter, FaFacebookF, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaTwitter, FaFacebookF, FaInstagram, FaLinkedinIn, FaWhatsapp } from 'react-icons/fa';
 import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 
@@ -18,7 +18,6 @@ export default function ContactPage() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Ici tu enverrais les données du formulaire à ton backend
         console.log('Form submitted:', formData);
         alert('Votre message a été envoyé avec succès ! Nous vous répondrons bientôt.');
         setFormData({ name: '', email: '', subject: '', message: '' });
@@ -28,53 +27,53 @@ export default function ContactPage() {
         <>
             <Navbar />
 
-            <div className="container mx-auto px-6 py-12 sm:py-16 bg-gray-50 font-sans">
+            <div className="container mx-auto px-6 py-16 bg-gray-50 font-sans max-w-7xl">
                 {/* Hero Section */}
                 <motion.div
-                    className="text-center mb-12 sm:mb-16 pt-8"
-                    initial={{ opacity: 0, y: -50 }}
+                    className="text-center mb-16 pt-10 px-4 sm:px-6 lg:px-8"
+                    initial={{ opacity: 0, y: -40 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.7 }}
                 >
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-heading font-extrabold text-gray-800 leading-tight mb-4">
+                    <h1 className="text-5xl sm:text-6xl font-heading font-extrabold text-gray-900 mb-4 leading-tight">
                         Contactez-nous <span className="text-blue-700">dès maintenant</span>
                     </h1>
-                    <p className="text-base sm:text-lg text-gray-700 max-w-3xl mx-auto px-4">
+                    <p className="max-w-3xl mx-auto text-lg sm:text-xl text-gray-700 tracking-wide">
                         Nous sommes là pour répondre à toutes vos questions et vous aider avec vos envois de la Belgique à Goma.
                     </p>
                 </motion.div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-20 items-start">
                     {/* Left Column: Contact Information */}
                     <motion.div
-                        className="bg-gradient-to-br from-blue-700 to-blue-900 text-white p-8 sm:p-10 rounded-2xl shadow-xl flex flex-col justify-between h-full"
+                        className="bg-gradient-to-br from-blue-700 to-blue-900 text-white p-10 rounded-3xl shadow-2xl flex flex-col justify-between h-full"
                         initial={{ opacity: 0, x: -50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
                         <div>
-                            <h2 className="text-3xl sm:text-4xl font-heading font-bold mb-6">Informations de Contact</h2>
-                            <p className="text-base sm:text-lg mb-8 leading-relaxed opacity-90">
+                            <h2 className="text-4xl font-heading font-bold mb-8 tracking-tight">Informations de Contact</h2>
+                            <p className="text-lg mb-10 leading-relaxed opacity-90 tracking-wide">
                                 N'hésitez pas à nous joindre par téléphone, email ou à visiter nos bureaux. Notre équipe est prête à vous assister.
                             </p>
 
-                            <div className="space-y-6 text-base sm:text-lg">
+                            <div className="space-y-8 text-lg">
                                 <div className="flex items-start">
-                                    <FaMapMarkerAlt className="text-emerald-300 text-2xl mt-1 mr-4 flex-shrink-0" />
+                                    <FaMapMarkerAlt className="text-emerald-300 text-3xl mt-1 mr-5 flex-shrink-0" />
                                     <div>
-                                        <h3 className="font-heading font-semibold text-xl">Adresse Principale (Belgique)</h3>
-                                        <address className="not-italic text-gray-200">
+                                        <h3 className="font-heading font-semibold text-2xl mb-1">Adresse Principale (Belgique)</h3>
+                                        <address className="not-italic text-gray-200 text-lg leading-relaxed">
                                             Rue Brogniez 207, <br />1070 Anderlecht, Belgique
                                         </address>
                                     </div>
                                 </div>
 
                                 <div className="flex items-center">
-                                    <FaEnvelope className="text-emerald-300 text-2xl mr-4 flex-shrink-0" />
+                                    <FaEnvelope className="text-emerald-300 text-3xl mr-5 flex-shrink-0" />
                                     <div>
-                                        <h3 className="font-heading font-semibold text-xl">Email</h3>
+                                        <h3 className="font-heading font-semibold text-2xl mb-1">Email</h3>
                                         <p>
-                                            <a href="mailto:info@afrikaworldservices.com" className="hover:underline text-gray-200">
+                                            <a href="mailto:info@afrikaworldservices.com" className="hover:underline text-gray-200 text-lg">
                                                 info@afrikaworldservices.com
                                             </a>
                                         </p>
@@ -82,11 +81,11 @@ export default function ContactPage() {
                                 </div>
 
                                 <div className="flex items-center">
-                                    <FaPhoneAlt className="text-emerald-300 text-2xl mr-4 flex-shrink-0" />
+                                    <FaPhoneAlt className="text-emerald-300 text-3xl mr-5 flex-shrink-0" />
                                     <div>
-                                        <h3 className="font-heading font-semibold text-xl">Téléphone</h3>
+                                        <h3 className="font-heading font-semibold text-2xl mb-1">Téléphone</h3>
                                         <p>
-                                            <a href="tel:+32465154669" className="hover:underline text-gray-200">
+                                            <a href="tel:+32465154669" className="hover:underline text-gray-200 text-lg">
                                                 +32 465 15 46 69
                                             </a>
                                         </p>
@@ -95,38 +94,36 @@ export default function ContactPage() {
 
                                 {/* Bouton WhatsApp */}
                                 <div className="flex items-center">
-                                    <FaPhoneAlt className="text-green-400 text-2xl mr-4 flex-shrink-0" />
+                                    <FaWhatsapp className="text-green-400 text-3xl mr-5 flex-shrink-0" />
                                     <div>
-                                        <h3 className="font-heading font-semibold text-xl">Appel WhatsApp</h3>
-                                        <p>
-                                            <a
-                                                href="https://wa.me/32465154669"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="inline-block mt-2 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300"
-                                            >
-                                                Appeler via WhatsApp
-                                            </a>
-                                        </p>
+                                        <h3 className="font-heading font-semibold text-2xl mb-2">Contact WhatsApp</h3>
+                                        <a
+                                            href="https://wa.me/32465154669"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-block bg-green-500 hover:bg-green-600 transition-colors duration-300 text-white font-semibold py-3 px-6 rounded-full shadow-lg text-lg tracking-wide"
+                                        >
+                                            Discuter sur WhatsApp
+                                        </a>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="mt-10 sm:mt-12">
-                            <h3 className="font-heading font-semibold text-2xl mb-4">Suivez-nous sur les réseaux sociaux</h3>
-                            <div className="flex space-x-5 sm:space-x-6">
-                                <a href="#" className="text-white hover:text-emerald-300 transition-colors duration-300 transform hover:scale-110" aria-label="Notre page Facebook">
-                                    <FaFacebookF className="text-3xl sm:text-4xl" />
+                        <div className="mt-14">
+                            <h3 className="font-heading font-semibold text-3xl mb-6 tracking-wide">Suivez-nous sur les réseaux sociaux</h3>
+                            <div className="flex space-x-8">
+                                <a href="#" className="text-white hover:text-emerald-300 transition-colors duration-300 transform hover:scale-110" aria-label="Facebook">
+                                    <FaFacebookF className="text-4xl" />
                                 </a>
-                                <a href="#" className="text-white hover:text-emerald-300 transition-colors duration-300 transform hover:scale-110" aria-label="Notre page Twitter">
-                                    <FaTwitter className="text-3xl sm:text-4xl" />
+                                <a href="#" className="text-white hover:text-emerald-300 transition-colors duration-300 transform hover:scale-110" aria-label="Twitter">
+                                    <FaTwitter className="text-4xl" />
                                 </a>
-                                <a href="#" className="text-white hover:text-emerald-300 transition-colors duration-300 transform hover:scale-110" aria-label="Notre page Instagram">
-                                    <FaInstagram className="text-3xl sm:text-4xl" />
+                                <a href="#" className="text-white hover:text-emerald-300 transition-colors duration-300 transform hover:scale-110" aria-label="Instagram">
+                                    <FaInstagram className="text-4xl" />
                                 </a>
-                                <a href="#" className="text-white hover:text-emerald-300 transition-colors duration-300 transform hover:scale-110" aria-label="Notre page LinkedIn">
-                                    <FaLinkedinIn className="text-3xl sm:text-4xl" />
+                                <a href="#" className="text-white hover:text-emerald-300 transition-colors duration-300 transform hover:scale-110" aria-label="LinkedIn">
+                                    <FaLinkedinIn className="text-4xl" />
                                 </a>
                             </div>
                         </div>
@@ -134,17 +131,17 @@ export default function ContactPage() {
 
                     {/* Right Column: Contact Form */}
                     <motion.div
-                        className="bg-white p-8 sm:p-10 rounded-2xl shadow-xl border border-gray-200 h-full"
+                        className="bg-white p-10 rounded-3xl shadow-2xl border border-gray-200 h-full"
                         initial={{ opacity: 0, x: 50 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, delay: 0.3 }}
                     >
-                        <h2 className="text-3xl sm:text-4xl font-heading font-bold text-gray-900 mb-8 text-center">
+                        <h2 className="text-4xl font-heading font-bold text-gray-900 mb-10 text-center tracking-tight">
                             Envoyez-nous un Message
                         </h2>
-                        <form onSubmit={handleSubmit} className="space-y-6 sm:space-y-7">
+                        <form onSubmit={handleSubmit} className="space-y-8">
                             <div>
-                                <label htmlFor="name" className="block text-gray-800 text-base sm:text-lg font-semibold mb-2">
+                                <label htmlFor="name" className="block text-gray-800 text-lg font-semibold mb-3">
                                     Nom Complet
                                 </label>
                                 <input
@@ -153,13 +150,14 @@ export default function ContactPage() {
                                     name="name"
                                     value={formData.name}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 sm:px-5 sm:py-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-gray-700 text-base"
+                                    className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-3 focus:ring-blue-400 focus:border-transparent outline-none transition duration-300 text-gray-700 text-lg"
                                     placeholder="Votre nom"
                                     required
                                 />
                             </div>
+
                             <div>
-                                <label htmlFor="email" className="block text-gray-800 text-base sm:text-lg font-semibold mb-2">
+                                <label htmlFor="email" className="block text-gray-800 text-lg font-semibold mb-3">
                                     Adresse Email
                                 </label>
                                 <input
@@ -168,13 +166,14 @@ export default function ContactPage() {
                                     name="email"
                                     value={formData.email}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 sm:px-5 sm:py-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-gray-700 text-base"
+                                    className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-3 focus:ring-blue-400 focus:border-transparent outline-none transition duration-300 text-gray-700 text-lg"
                                     placeholder="votre.email@exemple.com"
                                     required
                                 />
                             </div>
+
                             <div>
-                                <label htmlFor="subject" className="block text-gray-800 text-base sm:text-lg font-semibold mb-2">
+                                <label htmlFor="subject" className="block text-gray-800 text-lg font-semibold mb-3">
                                     Sujet
                                 </label>
                                 <input
@@ -183,13 +182,14 @@ export default function ContactPage() {
                                     name="subject"
                                     value={formData.subject}
                                     onChange={handleChange}
-                                    className="w-full px-4 py-3 sm:px-5 sm:py-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-gray-700 text-base"
+                                    className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-3 focus:ring-blue-400 focus:border-transparent outline-none transition duration-300 text-gray-700 text-lg"
                                     placeholder="Sujet de votre message"
                                     required
                                 />
                             </div>
+
                             <div>
-                                <label htmlFor="message" className="block text-gray-800 text-base sm:text-lg font-semibold mb-2">
+                                <label htmlFor="message" className="block text-gray-800 text-lg font-semibold mb-3">
                                     Votre Message
                                 </label>
                                 <textarea
@@ -197,17 +197,18 @@ export default function ContactPage() {
                                     name="message"
                                     value={formData.message}
                                     onChange={handleChange}
-                                    rows="6"
-                                    className="w-full px-4 py-3 sm:px-5 sm:py-3.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-200 text-gray-700 resize-y text-base"
+                                    rows="7"
+                                    className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:ring-3 focus:ring-blue-400 focus:border-transparent outline-none transition duration-300 text-gray-700 resize-y text-lg"
                                     placeholder="Décrivez votre besoin ou question en détail..."
                                     required
                                 ></textarea>
                             </div>
+
                             <motion.button
                                 type="submit"
-                                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3.5 sm:py-4 px-6 rounded-lg text-lg sm:text-xl shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
+                                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-4 rounded-xl text-xl shadow-lg transition duration-300 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-offset-2"
+                                whileHover={{ scale: 1.04 }}
+                                whileTap={{ scale: 0.97 }}
                             >
                                 Envoyer le Message
                             </motion.button>
@@ -217,12 +218,12 @@ export default function ContactPage() {
 
                 {/* Map Section */}
                 <motion.div
-                    className="mt-16 sm:mt-20 rounded-2xl overflow-hidden shadow-2xl border-4 border-blue-100 bg-white p-4 sm:p-6"
+                    className="mt-20 rounded-3xl overflow-hidden shadow-2xl border-4 border-blue-100 bg-white p-6"
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.4 }}
                 >
-                    <h2 className="text-3xl sm:text-2xl font-heading font-bold text-center text-gray-900 mb-6 sm:mb-8">
+                    <h2 className="text-3xl font-heading font-bold text-center text-gray-900 mb-8 tracking-tight">
                         Retrouvez-nous sur la <span className="text-blue-700">Carte</span>
                     </h2>
 
