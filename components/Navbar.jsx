@@ -9,6 +9,7 @@ function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
 
+    // Bloquer le scroll quand le menu mobile est ouvert
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
@@ -17,19 +18,16 @@ function Navbar() {
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
         }
+    }, [isOpen]);
 
-        const handleRouteChange = () => {
-            setIsOpen(false);
-        };
-
+    // Fermer le menu lors d’un changement de page
+    useEffect(() => {
+        const handleRouteChange = () => setIsOpen(false);
         router.events.on('routeChangeStart', handleRouteChange);
-
         return () => {
-            document.body.style.overflow = '';
-            document.documentElement.style.overflow = '';
             router.events.off('routeChangeStart', handleRouteChange);
         };
-    }, [isOpen, router.events]);
+    }, [router.events]);
 
     const navVariants = {
         hidden: { opacity: 0, y: -25 },
@@ -42,6 +40,16 @@ function Navbar() {
         exit: { opacity: 0, x: '100%', transition: { duration: 0.2, ease: 'easeIn' } },
     };
 
+    const links = [
+        { href: '/', label: 'Accueil' },
+        { href: '/services', label: 'Services' },
+        { href: '/tarifs', label: 'Tarifs' },
+        { href: '/contact', label: 'Contact' },
+    ];
+
+    // Fonction pour savoir si un lien est actif
+    const isActive = (path) => router.pathname === path;
+
     return (
         <motion.nav
             className="bg-blue-800 p-5 shadow-lg sticky top-0 z-50"
@@ -51,24 +59,24 @@ function Navbar() {
         >
             <div className="container mx-auto flex justify-between items-center px-4 sm:px-6 lg:px-8 max-w-7xl">
                 {/* Logo */}
-                <Link href="/" className="flex items-center text-white text-3xl md:text-4xl font-extrabold tracking-wide">
+                <Link
+                    href="/"
+                    className="flex items-center text-white text-3xl md:text-4xl font-extrabold tracking-wide"
+                >
                     <FaShippingFast className="mr-3 text-yellow-400 text-4xl md:text-5xl" />
                     AWS
                 </Link>
 
                 {/* Menu Desktop */}
                 <div className="hidden md:flex items-center space-x-8 lg:space-x-10">
-                    {[
-                        { href: '/', label: 'Accueil' },
-                        { href: '/services', label: 'Services' },
-                        { href: '/tarifs', label: 'Tarifs' },
-                        // { href: '/suivi', label: 'Suivi' },
-                        { href: '/contact', label: 'Contact' },
-                    ].map(({ href, label }) => (
+                    {links.map(({ href, label }) => (
                         <Link
                             key={href}
                             href={href}
-                            className="text-white text-lg font-semibold hover:text-yellow-400 transition duration-300"
+                            className={`text-lg font-semibold transition duration-300 ${isActive(href)
+                                    ? 'text-yellow-400 border-b-2 border-yellow-400 pb-1'
+                                    : 'text-white hover:text-yellow-400'
+                                }`}
                         >
                             {label}
                         </Link>
@@ -79,18 +87,12 @@ function Navbar() {
                         className="bg-orange-500 text-white px-8 py-3 rounded-full font-bold hover:bg-orange-400 transition-colors duration-300 text-lg shadow-md"
                         whileHover={{ scale: 1.06 }}
                         whileTap={{ scale: 0.95 }}
-                        initial={{ scale: 1 }}
                         animate={{
                             scale: [1, 1.05, 1],
-                            transition: {
-                                duration: 1.5,
-                                repeat: Infinity,
-                                ease: "easeInOut"
-                            }
+                            transition: { duration: 1.5, repeat: Infinity, ease: 'easeInOut' }
                         }}
                     >
                         Achetez sur Mangonets
-
                     </motion.a>
                 </div>
 
@@ -116,17 +118,14 @@ function Navbar() {
                         exit="exit"
                         variants={mobileMenuVariants}
                     >
-                        {[
-                            { href: '/', label: 'Accueil' },
-                            { href: '/services', label: 'Services' },
-                            { href: '/tarifs', label: 'Tarifs' },
-                            // { href: '/suivi', label: 'Suivi' },
-                            { href: '/contact', label: 'Contact' },
-                        ].map(({ href, label }) => (
+                        {links.map(({ href, label }) => (
                             <Link
                                 key={href}
                                 href={href}
-                                className="block text-white text-xl font-semibold hover:text-yellow-400 py-3 border-b border-blue-600 last:border-b-0 transition-colors"
+                                className={`block text-xl font-semibold py-3 border-b border-blue-600 last:border-b-0 transition-colors ${isActive(href)
+                                        ? 'text-yellow-400'
+                                        : 'text-white hover:text-yellow-400'
+                                    }`}
                                 onClick={() => setIsOpen(false)}
                             >
                                 {label}
@@ -139,14 +138,9 @@ function Navbar() {
                             whileHover={{ scale: 1.06 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => setIsOpen(false)}
-                            initial={{ scale: 1 }}
                             animate={{
-                                scale: [1, 1.05, 1], // Anime de la taille normale, à légèrement plus grande, puis revient à la normale
-                                transition: {
-                                    duration: 1.5,
-                                    repeat: Infinity, // Répète l'animation à l'infini
-                                    ease: "easeInOut"
-                                }
+                                scale: [1, 1.05, 1],
+                                transition: { duration: 1.5, repeat: Infinity, ease: 'easeInOut' }
                             }}
                         >
                             Achetez sur Mangonets
